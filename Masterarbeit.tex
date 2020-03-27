@@ -1,0 +1,299 @@
+
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\documentclass[
+        ngerman,
+        paper=a4,
+        numbers=noendperiod,
+]{scrreprt}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+% Encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Sprachsupport
+\usepackage[ngerman]{babel}
+\usepackage{translator}
+% Tabellen
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+\usepackage{multirow}
+% Symbole
+\usepackage{eurosym}
+% Formeln
+\usepackage{amsmath, amsthm, amssymb}
+% Formelregeln
+\DeclareNewTOC[% 
+  counterwithin=chapter, 
+  indent=0pt,% kein Einzug im Verzeichnis 
+  hang=2em,% Einzug für den Text im Verzeichnis 
+  name=equation, 
+  type=xequation, 
+  nonfloat, 
+]{loe} 
+
+\AtBeginDocument{% 
+  \newcaptionname{ngerman}\xequationname{Formel}% 
+  \newcaptionname{ngerman}\listxequationname{Formelverzeichnis}% 
+} 
+% Pakete
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage[babel,german=quotes]{csquotes}
+\usepackage[square,sort]{natbib}
+\usepackage[hyphens]{url}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage[
+        pdftex,
+        hyperfigures,
+        hyperindex,
+        bookmarksnumbered,
+        linktoc=all,
+        pdfborder={0.25 0.25 0.25},
+        %pdfborder={0 0 0},
+        pdfpagelayout=TwoColumnRight,
+]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{lmodern}
+\usepackage[final,babel]{microtype}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[printonlyused]{acronym}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancyhf{}
+\fancyhead[RE]{\chaptername~\thechapter}
+\fancyhead[LO]{\leftmark}
+\fancyhead[LE,RO]{\thepage}
+
+%Quellcodes
+%Farben
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+%Listing einfaerben
+\usepackage{listings}
+\lstset{numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	breaklines=true,
+	showstringspaces=false,
+	frame=l ,
+	xleftmargin=15pt,
+	xrightmargin=15pt,
+	basicstyle=\ttfamily\scriptsize,
+	stepnumber=1,
+	keywordstyle=\color{blue},          % keyword style
+  	commentstyle=\color{dkgreen},       % comment style
+  	stringstyle=\color{mauve}         % string literal style
+}
+%Sprache Festelegen
+\lstset{language=R}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+    \huge \textbf{\textsf{Titel der Arbeit}} \\
+    \vspace{1cm}
+    \LARGE\textbf{\textsc{Masterarbeit}}\\
+    \vspace{1cm}
+    \normalsize
+    vorgelegt am: 28.04.2014\\
+    \vspace{2.5cm}
+    \large \textbf{Fakultät IV - 
+Institut für Wissensbasierte
+Systeme und Wissensmanagement, Universität Siegen
+}
+\linebreak
+\linebreak
+\begin{figure}[H]
+    \centering\includegraphics[width=0.4\linewidth]{images/logo_uni_siegen_4c_[konvertiert].pdf}
+    \label{fig:Unilabel}
+\end{figure}
+    \end{center}
+    \vspace{3cm}
+    \begin{center}
+ \normalsize{
+    \begin{tabular}{ll}
+    	Eingereicht von: & {Vorname Nachname} \\
+    	Studiengang: & Wirtschaftsinformatik, Master of Science (M.Sc.)\\
+	Erstprüfer: & Prof. Dr.-Ing. Madjid Fathi \\
+	Zweitprüfer: & Titel. Vorname Nachname\\
+      	Betreuer: &   Vorname Nachname\\
+    \end{tabular}\\
+    }
+\end{center}
+\end{titlepage}
+\setcounter{page}{0}
+\pagenumbering{Roman}
+\tableofcontents
+\clearpage 
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\listoffigures
+\clearpage 
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+\clearpage 
+% Kapiteldefinition ohne Nummerierung
+\chapter*{Abkürzungsverzeichnis}
+ % Abkürzungsverzeichnis soll im Inhaltsverzeichnis erscheinen
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis} 
+\begin{acronym}
+% Format der Abkürzungsdefinition: \acro{}[]{}
+% {Verweis}[Abkürzung]{ausgeschriebene Abkürzung}
+\acro{cimawa}[CIMAWA]{Concept for the Imitiation of the Mental Ability of Word Association}
+\acro{edm}[EDM]{Entity Data Model}
+\acro{er}[ER]{Entity Relationship}
+\acro{fomc}[FOMC]{Federal Open Market Committee}
+\acro{hft}[HFT]{High Frequency Trading}
+\acro{linq}[LINQ]{Language Integrated Query}
+\acro{mef}[MEF]{Managed Extensibility Framework}
+\acro{mvc}[MVC]{Model View Controller}
+\acro{mvp}[MVP]{Model View Presenter}
+\acro{mvvm}[MVVM]{Model View ViewModel}
+\acro{nlp}[NLP]{Natural Language Processing}
+\acro{pos}[POS]{Part-of-Speech}
+\acro{ui}[UI]{User Interface}
+\acro{wpf}[WPF]{Windows Presentation Foundation}
+\acro{xaml}[XAML]{Extensible Application Markup Language}
+\acro{xml}[XML]{Extensible Markup Language}
+\end{acronym}
+\clearpage 
+\addcontentsline{toc}{chapter}{Formelverzeichnis} 
+\listofxequations
+\clearpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\chapter{Chapter}
+Lorem  \cite[vgl. S.3]{van2018argumentation} ipsum dolor l \cite[S. 265]{kahneman}  sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum. 
+
+Lorem \enquote{ipsum} dolor sit amet, consetetur \textit{sadipscing} elitr, sed diam \textbf{nonumy} eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum. 
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \citep[]{eff65}, \citep[]{eff70}. 
+
+Lorem \enquote{ipsum} dolor sit amet, consetetur \textit{sadipscing} elitr, sed diam \textbf{nonumy} eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+At vero eos et accusam et justo duo dolores et ea rebum. 
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet \citep[]{eff65}, \citep[]{eff70}. 
+\section{Sections}
+\subsection{Subsections}
+\subsubsection{Subsubsections}
+\paragraph{Paragraphs}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+\paragraph{Paragraphs with linebreak}$\;$\\
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+\section{Images}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \ref{fig:uni_siegen}. 
+\begin{figure}[H]
+    \centering\includegraphics[width=0.50\linewidth]{images/logo_uni_siegen_4c_[konvertiert].pdf}
+    \caption[Logo der Universität Siegen]{Logo der Universität Siegen, in Anlehnung an \cite []{eff70}}
+    \label{fig:uni_siegen}
+\end{figure}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\section{Section}
+
+\begin{description}
+\item[Sechs Prozessschritte des Text Mining] (In Anlehnung an \cite [S. 288]{eff70}):
+\begin{itemize}
+\item \textbf{Aufgabendefinition:} Die Problemstellung wird analysiert und daraus die Ziele des Text Mining abgeleitet. Anhand der Ziele werden relevante Dokumente und textbasierte Informationen zusammengetragen. So entsteht ein Korpus, der aus einzelnen Texten zusammengefasst wird.
+\item \textbf{Dokumentselektion:} Anhand der Zielformulierung sollen relevante Dokumente im Korpus identifiziert werden. Dabei werden die Dokumente verfügbar gemacht für Methoden der Dokumentenaufbereitung.
+\item \textbf{Dokumentaufbereitung:} Text Mining Methoden sind nicht direkt auf Dokumente anwendbar, sondern erfordern eine aufbereitete Datenstruktur. Mithilfe verschiedener Techniken des Natural Language Processing werden einzelne Bestandteile des Textes extrahiert. Hierbei kann es sich anschließend um eine Datenbasis handeln, die aus einzelnen Wörtern, Wortstämmen oder zusammengesetzten Wortphrasen besteht.
+\item \textbf{Text Mining Methoden:} Nachdem die Texte in aufbereiteter Form vorliegen können sie mit statistischen Verfahren untersucht werden. Hierbei gibt es verschiedene Ansätze, wie beispielsweise Segmentierung, Klassifikation, Assoziationsanalyse oder Ähnlichkeitsanalyse.
+\item \textbf{Interpretation und Evaluation:} Die Ergebnisse der Text Mining Analysemethoden werden untersucht, bewertet und interpretiert.
+\item \textbf{Anwendung der Ergebnisse:} Die gewonnen Analyseergebnisse kommen schließlich in verschiedenen Anwendungsfällen zum Einsatz.
+\end{itemize} 
+\end{description}
+\section{Tables}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\begin{table}[H]
+{\small
+   \begin{tabularx}{\textwidth}{X|X|X|X|X|X|X|X}
+Jahr &  Januar &	Februar &	März & 	April & Mai & Juni & Juli\\ \toprule
+    2000      &1      &-       &-       &-         &-       &-  &218\\
+    2001      &2363      &2174      &2391    &2303      &2758      & 2710	&2950\\ 
+    2002      &3262      &2899      &3103    &3186      &3171      &2624	&3395\\ 
+    2003      &3265      &3060      &3367    &3579      &3511      &3167	&3854\\ 
+    2004      &3849      &3933      &4516    &3609      &3524      &3558	&3718\\ 
+    2005      &3358      &3234      &3465    &3297      &3428      &3281	&3261\\ 
+    2006      &3330      &3202      &3918    &3029      &3809      &3181	&3045\\ 
+    2007      &3497      &3433      &3897    &3467      &4065      &3548	&3730\\ 
+    2008      &3991      &3829      &3711    &4358      &4289      &3999	&4791\\ 
+    2009      &4189      &4159      &4662    &4103      &4210      &3901	&4466\\ 
+    2010      &3698      &3766      &5761    &9498      &10207    &10153	&10601\\ 
+    2011      &11886      &12048      &14052    &11962      &13865      &11572	&12904\\ 
+    2012      &11624      &12498      &12630    &10290      &6084      &5948	&12656\\ 
+    2013      &12430     &11849      &11412    &11953      &11715      &9319&10764\\ 
+    2014      &10254      &8549      &    &     &      & & \\ 
+  \end{tabularx}
+\caption{Dummy Table}
+    \label{tab:tab1}
+}
+\end{table}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+\section{Equations}
+Lorem ipsum dolor sit \ac{cimawa} amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\begin{xequation-} 
+\centering $S_{Dokument}= \frac{\sum_{i=1}^n{\theta_{{Token}_i}}}{n}$
+\caption[Berechnungsvorschrift für den Sentimentwert der Dokument-Ebene]{Berechnungsvorschrift für den Sentimentwert der Dokument-Ebene} 
+\end{xequation-} 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\begin{xequation-} 
+\centering \textit{$CIMAWA_{ws}^\zeta$ $(x(y))$} = $\frac{Cooc_{ws}(x,y)}{(frequency(y))^\alpha} + \zeta \cdot \frac{Cooc_{ws}(x,y)}{(frequency(x))^\alpha}$
+\caption[CIMAWA]{\ac{cimawa}, \cite []{eff70}} 
+\end{xequation-}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\chapter{Chapter}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\appendix 
+\chapter{Anhang}
+\label{chapter:Anhang}%
+\section{Skripte, Code, Listings}
+\label{section:scripts} %
+\begin{lstlisting}
+###########################GLOBALE EINSTELLUNGEN############################
+#Globale Variable fuer MySQL
+Sys.setenv(MYSQL_HOME="C:/xampp/mysql")
+#Pakete laden, (Installieren mit install.packages('package'))
+require(RMySQL)
+require(XML)
+require(stringr)
+############################DATENBANK CONNECT###############################
+#Funktion fuer den Zugriff auf die Datenbank
+con <- dbConnect(MySQL(), user="***", password="***", host="***", dbname="***")
+query <- function(...) dbGetQuery(con, ...)
+...
+############################DATENBANK DISCONNECT############################
+dbDisconnect(con)
+\end{lstlisting}
+
+\clearpage
+        \phantomsection % damit das pdf bookmark an die richtige Stelle zeigt
+        \pdfbookmark{Literaturverzeichnis}{bibliography}
+        
+        % zeigt immer alle definierten Quellen an, auch wenn diese nicht verwendet werden
+        %\nocite{*}
+        \bibliographystyle{apalike}
+        \addcontentsline{toc}{chapter}{Literaturverzeichnis}
+        \bibliography{literatur}
+
+
+
+
+\chapter*{Erklärung}
+Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe, insbesondere keine anderen als die angegebenen Informationen aus dem Internet. Diejenigen Paragraphen der für mich gültigen Prüfungsordnung, welche etwaige Betrugsversuche betreffen, habe ich zur Kenntnis genommen. Der Speicherung meiner Master-Arbeit zum Zweck der Plagiatsprüfung stimme ich zu. Ich versichere, dass die elektronische Version mit der gedruckten Version inhaltlich übereinstimmt.\newline
+\linebreak
+\linebreak
+\linebreak
+.................................., den .........................\newline
+(Ort) (Datum)\newline
+\linebreak
+\linebreak
+\linebreak
+..................................\newline
+(Unterschrift)
+\end{document}
